@@ -1,4 +1,5 @@
 # TusJuegos.com
+¡Bienvenido al repositorio de TusJuegos.com! Nuestro proyecto está dedicado a proporcionar servicios de registro de videojuegos de primera calidad. Desarrollado utilizando las tecnologías líderes en la web, como HTML, CSS, JavaScript y Vue.js. ¡Te invitamos a explorar nuestro código y descubrir todo lo que podemos ofrecerte!
 
 ## Descripción del Proyecto
 TusJuegos.com es una aplicación web que permite a los usuarios registrar y gestionar sus videojuegos. La aplicación proporciona una interfaz simple para agregar información sobre los juegos, incluyendo el nombre, la plataforma, el estado y el puntaje. Además, los usuarios pueden ver una lista de los videojuegos registrados y obtener más información sobre cada juego a través de un botón en la tabla de resultados.
