@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TusJuegos.com</title>
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=XBMnwwJYQvfN&format=png&color=000000" type="image/x-icon">
+    <!-- Importar Vue.js -->
+    <script src="https://unpkg.com/vue@3.3.2/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <div id="appVideojuego">
+
+        <h1>{{ titulo }}</h1>
+
+        <h3>{{ subtituloPaginaRegistro }}</h3>
+
+        <form @submit.prevent="registrarVideojuego">
+
+            <label>Nombre <input type="text" v-model="nombreVideojuego" id="nombre-videojuego" placeholder="Nombre del juego" required></label> </br> </br>
+
+            <label>Plataforma 
+            <select v-model="plataformaVideojuego" id="plataforma-videojuego" name="plataforma-equipo" required>
+                <option value="" disabled selected>Selecciona una plataforma</option>
+                <option value="Pc">PC</option>
+                <option value="PlayStation">PlayStation</option>
+                <option value="Xbox one">Xbox one</option>
+            </select></label></br></br>
+
+            <label>Estado <select id="estado-videojuego"  v-model="estadoVideojuego" name="estado-juego" required>
+                <option value="" disabled selected>¿En que estado del juego te encuentras?</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Jugando">Jugando</option>
+                <option value="Completado">Completado</option>
+            </select></label></br></br>
+
+            <label>Puntaje <input type="number"  v-model="puntajeVideojuego" placeholder="Puntaje del juego" id="puntaje-videojuego"></label> </br> </br>
+        </form>
+
+        <button type="submit" id="boton-registrar" @click="registrarVideojuego">Registrar videojuego</button>
+
+        <!-- MOSTRAR SI HUBO ERRORES-->
+        <ul>
+            <li v-for="(error, index) in validacionVideojuegos" :key="index">{{ error }}</li>
+        </ul>
+
+        <h3>{{ subtituloPaginaResultado }}</h3>
+
+        <!-- FILTROS -->
+        <label>Nombre <input type="text" id="filtro-nombre-videojuego" placeholder="Nombre del juego" required></label>
+
+        <label>Plataforma 
+            <select id="filtro-plataforma-videojuego" name="plataforma-equipo">
+                <option value="" disabled selected>Plataforma</option>
+                <option value="Pc">PC</option>
+                <option value="PlayStation">PlayStation</option>
+                <option value="Xbox one">Xbox one</option>
+            </select>
+        </label>
+
+        <label>Estado 
+            <select id="filtro-estado-videojuego" name="estado-juego">
+                <option value="" disabled selected>Estado</option>
+                <option value="Pendiente">Pendiente</option>
+                <option value="Jugando">Jugando</option>
+                <option value="Completado">Completado</option>
+            </select>
+        </label>
+        <!---->
+
+        </br> </br>
+
+        <resultados-videojuegos :juegos="juegos"></resultados-videojuegos>
+        
+    </div>
+    
+    <script src="scripts.js"></script>
+    <script src="./Componentes/resultadosVideojuegos.js"></script>
+    <script>appVideojuego.mount('#appVideojuego');</script>
+   
+
+</body>
+</html>
