@@ -29,7 +29,7 @@
             </select></label></br></br>
 
             <label>Estado <select id="estado-videojuego"  v-model="estadoVideojuego" name="estado-juego" required>
-                <option value="" disabled selected>¿En que estado del juego te encuentras?</option>
+                <option value="" disabled selected>¿En qué estado del juego te encuentras?</option>
                 <option value="Pendiente">Pendiente</option>
                 <option value="Jugando">Jugando</option>
                 <option value="Completado">Completado</option>
@@ -48,11 +48,11 @@
         <h3>{{ subtituloPaginaResultado }}</h3>
 
         <!-- FILTROS -->
-        <label>Nombre <input type="text"  id="filtro-nombre-videojuego" placeholder="Nombre del juego" required></label>
+        <label>Nombre <input type="text" v-model="filtroNombre" id="filtro-nombre-videojuego" placeholder="Nombre del juego"></label>
 
         <label>Plataforma 
-            <select id="filtro-plataforma-videojuego"  name="plataforma-equipo">
-                <option value="" disabled selected>Plataforma</option>
+            <select v-model="filtroPlataforma" id="filtro-plataforma-videojuego" name="plataforma-equipo">
+                <option value="">Plataforma</option>
                 <option value="Pc">PC</option>
                 <option value="PlayStation">PlayStation</option>
                 <option value="Xbox one">Xbox one</option>
@@ -60,8 +60,8 @@
         </label>
 
         <label>Estado 
-            <select id="filtro-estado-videojuego"  name="estado-juego">
-                <option value="" disabled selected>Estado</option>
+            <select v-model="filtroEstado" id="filtro-estado-videojuego" name="estado-juego">
+                <option value="">Estado</option>
                 <option value="Pendiente">Pendiente</option>
                 <option value="Jugando">Jugando</option>
                 <option value="Completado">Completado</option>
@@ -71,7 +71,7 @@
 
         </br> </br>
 
-        <resultados-videojuegos :juegos="juegos" @mostrar-informacion="actualizarInformacion"></resultados-videojuegos>
+        <resultados-videojuegos :juegos="juegos" :juegos-filtrados="juegosFiltrados" @mostrar-informacion="actualizarInformacion"></resultados-videojuegos>
 
         <div v-if="informacion">{{ informacion }}</div>
     </div>

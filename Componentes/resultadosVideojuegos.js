@@ -1,5 +1,4 @@
 appVideojuego.component('resultados-videojuegos', {
-
     template: 
     /*HTML*/
     `
@@ -14,7 +13,7 @@ appVideojuego.component('resultados-videojuegos', {
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(juego, index) in juegos" :key="index">
+                <tr v-for="(juego, index) in juegosFiltrados" :key="index">
                     <td>{{ juego.nombre }}</td>
                     <td>{{ juego.plataforma }}</td>
                     <td>{{ juego.estado }}</td>
@@ -23,31 +22,25 @@ appVideojuego.component('resultados-videojuegos', {
                 </tr>
             </tbody>
         </table>
-
-      
     `, 
-    data() {
-        return {
-            
-        }
-    },
     props: {
         juegos: {
             type: Array,
             required: true
         },
+        juegosFiltrados: {
+            type: Array,
+            required: true
+        }
     },
     methods: {
-        // Función para mostrar más información sobre el juego
         mostrarMasInformacion(juego) {
             let juegoMasInformacion = `Nombre: ${juego.nombre}\n
                 Plataforma: ${juego.plataforma}\n
                 Estado: ${juego.estado}\n
                 Puntaje: ${juego.puntaje}`;
             
-            this.$emit('mostrar-informacion', juegoMasInformacion); // Emitir el evento
+            this.$emit('mostrar-informacion', juegoMasInformacion);
         }
     }
 });
-
-

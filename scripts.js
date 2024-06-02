@@ -10,11 +10,13 @@ const appVideojuego = Vue.createApp({
             puntajeVideojuego: "",
             validacionVideojuegos: [],
             juegos: [],
-            informacion: "" 
+            informacion: "",
+            filtroNombre: "", // Filtro por nombre
+            filtroPlataforma: "", // Filtro por plataforma
+            filtroEstado: "" // Filtro por estado
         }
     },
     methods: {
-        // Función para registrar el videojuego
         registrarVideojuego() {
             this.validacionVideojuegos = this.validarDatos();
 
@@ -26,7 +28,6 @@ const appVideojuego = Vue.createApp({
                 this.puntajeVideojuego = " - ";
             }
 
-            // Registro del videojuego para guardarlo en la tabla
             let nuevoJuego = {
                 nombre: this.nombreVideojuego,
                 plataforma: this.plataformaVideojuego,
@@ -38,9 +39,7 @@ const appVideojuego = Vue.createApp({
             this.resetearFormulario();
         },
 
-        // Función para validar los datos del videojuego
         validarDatos() {
-
             this.validacionVideojuegos = [];
 
             if (this.nombreVideojuego.trim() === "") {
@@ -59,7 +58,6 @@ const appVideojuego = Vue.createApp({
             return this.validacionVideojuegos;
         },
 
-        // Función para limpiar los datos del formulario
         resetearFormulario() {
             this.nombreVideojuego = "";
             this.plataformaVideojuego = "";
@@ -68,6 +66,15 @@ const appVideojuego = Vue.createApp({
         },
         actualizarInformacion(informacion) {
             this.informacion = informacion;
+        }
+    },
+    computed: {
+        juegosFiltrados() {
+            return this.juegos.filter(juego => {
+                return (this.filtroNombre === "" || juego.nombre.toLowerCase().includes(this.filtroNombre.toLowerCase())) &&
+                       (this.filtroPlataforma === "" || juego.plataforma === this.filtroPlataforma) &&
+                       (this.filtroEstado === "" || juego.estado === this.filtroEstado);
+            });
         }
     }
 });
