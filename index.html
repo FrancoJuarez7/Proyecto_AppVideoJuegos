@@ -48,10 +48,10 @@
         <h3>{{ subtituloPaginaResultado }}</h3>
 
         <!-- FILTROS -->
-        <label>Nombre <input type="text" id="filtro-nombre-videojuego" placeholder="Nombre del juego" required></label>
+        <label>Nombre <input type="text"  id="filtro-nombre-videojuego" placeholder="Nombre del juego" required></label>
 
         <label>Plataforma 
-            <select id="filtro-plataforma-videojuego" name="plataforma-equipo">
+            <select id="filtro-plataforma-videojuego"  name="plataforma-equipo">
                 <option value="" disabled selected>Plataforma</option>
                 <option value="Pc">PC</option>
                 <option value="PlayStation">PlayStation</option>
@@ -60,7 +60,7 @@
         </label>
 
         <label>Estado 
-            <select id="filtro-estado-videojuego" name="estado-juego">
+            <select id="filtro-estado-videojuego"  name="estado-juego">
                 <option value="" disabled selected>Estado</option>
                 <option value="Pendiente">Pendiente</option>
                 <option value="Jugando">Jugando</option>
@@ -71,8 +71,9 @@
 
         </br> </br>
 
-        <resultados-videojuegos :juegos="juegos"></resultados-videojuegos>
-        
+        <resultados-videojuegos :juegos="juegos" @mostrar-informacion="actualizarInformacion"></resultados-videojuegos>
+
+        <div v-if="informacion">{{ informacion }}</div>
     </div>
     
     <script src="scripts.js"></script>

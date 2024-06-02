@@ -23,30 +23,31 @@ appVideojuego.component('resultados-videojuegos', {
                 </tr>
             </tbody>
         </table>
+
+      
     `, 
     data() {
-        return {}
+        return {
+            
+        }
     },
     props: {
         juegos: {
             type: Array,
             required: true
-        }
+        },
     },
     methods: {
         // Función para mostrar más información sobre el juego
         mostrarMasInformacion(juego) {
-            let cuadro = document.createElement('div'); // Los bordes y estilos de esta caja, agregarlos en CSS
-
-            let informacion = document.createTextNode(
-                `Nombre: ${juego.nombre}\n
+            let juegoMasInformacion = `Nombre: ${juego.nombre}\n
                 Plataforma: ${juego.plataforma}\n
                 Estado: ${juego.estado}\n
-                Puntaje: ${juego.puntaje}`
-            );
-
-            cuadro.appendChild(informacion);
-            document.body.appendChild(cuadro); 
+                Puntaje: ${juego.puntaje}`;
+            
+            this.$emit('mostrar-informacion', juegoMasInformacion); // Emitir el evento
         }
     }
 });
+
+

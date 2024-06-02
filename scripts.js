@@ -9,7 +9,8 @@ const appVideojuego = Vue.createApp({
             estadoVideojuego: "",
             puntajeVideojuego: "",
             validacionVideojuegos: [],
-            juegos: []
+            juegos: [],
+            informacion: "" 
         }
     },
     methods: {
@@ -34,7 +35,7 @@ const appVideojuego = Vue.createApp({
             };
 
             this.juegos.push(nuevoJuego);
-            this.limpiarFormulario();
+            this.resetearFormulario();
         },
 
         // Función para validar los datos del videojuego
@@ -59,13 +60,15 @@ const appVideojuego = Vue.createApp({
         },
 
         // Función para limpiar los datos del formulario
-        limpiarFormulario() {
+        resetearFormulario() {
             this.nombreVideojuego = "";
             this.plataformaVideojuego = "";
             this.estadoVideojuego = "";
             this.puntajeVideojuego = "";
         },
-    
+        actualizarInformacion(informacion) {
+            this.informacion = informacion;
+        }
     }
 });
 
