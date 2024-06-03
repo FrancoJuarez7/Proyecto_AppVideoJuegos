@@ -51,8 +51,7 @@ label {
 
 .form-section-errors {
   padding: 10px;
-  background-color: #ffdddd;
-  border: 1px solid #dd0000;
+  background-color: #f9f9f9;
   border-radius: 5px;
   grid-column: 2 / 3;
   grid-row: 1 / 2;
