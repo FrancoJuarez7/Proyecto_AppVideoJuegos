@@ -95,8 +95,12 @@
             </div>
             <div class="info-section">
                 <h3>Más Información</h3>
-                <div v-if="informacion" id="informacion-adicional" v-html="informacion">{{
-                    informacion }}</div>
+                <div v-if="juego" id="informacion-adicional">
+                    <p>Nombre: {{juego.nombre}}</p>
+                    <p>Plataforma: {{juego.plataforma}}</p>
+                    <p>Estado: {{juego.estado}}</p>
+                    <p>Puntaje: {{juego.puntaje}}</p>
+                </div>
             </div>
         </div>
     </div>

@@ -31,9 +31,7 @@ appVideojuego.component("resultados-videojuegos", {
   },
   methods: {
     mostrarMasInformacion(juego) {
-      let juegoMasInformacion = `<p>Nombre: ${juego.nombre}</p><p>Plataforma: ${juego.plataforma}</p><p>Estado: ${juego.estado}</p><p>Puntaje: ${juego.puntaje}</p>`;
-
-      this.$emit("mostrar-informacion", juegoMasInformacion);
+      this.$emit("mostrar-informacion", juego);
     },
   },
 });

@@ -10,7 +10,7 @@ const appVideojuego = Vue.createApp({
       puntajeVideojuego: "",
       validacionVideojuegos: [],
       juegos: [],
-      informacion: "",
+      juego: "",
       filtroNombre: "", // Filtro por nombre
       filtroPlataforma: "", // Filtro por plataforma
       filtroEstado: "", // Filtro por estado
@@ -81,8 +81,8 @@ const appVideojuego = Vue.createApp({
       this.estadoVideojuego = "";
       this.puntajeVideojuego = "";
     },
-    actualizarInformacion(informacion) {
-      this.informacion = informacion;
+    actualizarInformacion(juego) {
+      this.juego = juego;
     },
   },
   computed: {
