@@ -1,85 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TusJuegos.com</title>
-    <link rel="icon" href="https://img.icons8.com/?size=100&id=XBMnwwJYQvfN&format=png&color=000000" type="image/x-icon">
+    <meta name="description" content="Trabajo Practico 2 - LAB III" />
+    <link rel="icon" href="https://img.icons8.com/?size=100&id=XBMnwwJYQvfN&format=png&color=000000"
+        type="image/x-icon">
     <!-- Importar Vue.js -->
     <script src="https://unpkg.com/vue@3.3.2/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div id="appVideojuego">
 
         <h1>{{ titulo }}</h1>
+        <!--Contenedor principal-->
+        <div class="grid-container">
+            <!-- Primera fila: Formulario de registro de videojuegos -->
+            <div class="form-section">
+                <h3>{{ subtituloPaginaRegistro }}</h3>
 
-        <h3>{{ subtituloPaginaRegistro }}</h3>
+                <form @submit.prevent="registrarVideojuego">
 
-        <form @submit.prevent="registrarVideojuego">
+                    <label>Nombre <input type="text" v-model="nombreVideojuego" id="nombre-videojuego"
+                            placeholder="Nombre del juego" required></label>
 
-            <label>Nombre <input type="text" v-model="nombreVideojuego" id="nombre-videojuego" placeholder="Nombre del juego" required></label> </br> </br>
+                    <label>Plataforma
+                        <select v-model="plataformaVideojuego" id="plataforma-videojuego" name="plataforma-equipo"
+                            required>
+                            <option value="" disabled selected>Selecciona una plataforma</option>
+                            <option value="Pc">PC</option>
+                            <option value="PlayStation">PlayStation</option>
+                            <option value="Xbox one">Xbox one</option>
+                        </select></label>
 
-            <label>Plataforma 
-            <select v-model="plataformaVideojuego" id="plataforma-videojuego" name="plataforma-equipo" required>
-                <option value="" disabled selected>Selecciona una plataforma</option>
-                <option value="Pc">PC</option>
-                <option value="PlayStation">PlayStation</option>
-                <option value="Xbox one">Xbox one</option>
-            </select></label></br></br>
+                    <label>Estado <select id="estado-videojuego" v-model="estadoVideojuego" name="estado-juego"
+                            required>
+                            <option value="" disabled selected>¿En qué estado del juego te encuentras?</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Jugando">Jugando</option>
+                            <option value="Completado">Completado</option>
+                        </select></label>
 
-            <label>Estado <select id="estado-videojuego"  v-model="estadoVideojuego" name="estado-juego" required>
-                <option value="" disabled selected>¿En qué estado del juego te encuentras?</option>
-                <option value="Pendiente">Pendiente</option>
-                <option value="Jugando">Jugando</option>
-                <option value="Completado">Completado</option>
-            </select></label></br></br>
+                    <label>Puntaje <input type="number" v-model="puntajeVideojuego" placeholder="Puntaje del juego"
+                            id="puntaje-videojuego"></label>
+                </form>
 
-            <label>Puntaje <input type="number"  v-model="puntajeVideojuego" placeholder="Puntaje del juego" id="puntaje-videojuego"></label> </br> </br>
-        </form>
+                <button type="submit" id="boton-registrar" @click="registrarVideojuego">Registrar videojuego</button>
 
-        <button type="submit" id="boton-registrar" @click="registrarVideojuego">Registrar videojuego</button>
+                <!-- MOSTRAR SI HUBO ERRORES-->
+                <ul>
+                    <li v-for="(error, index) in validacionVideojuegos" :key="index">{{ error }}</li>
+                </ul>
+            </div>
+            <h3>{{ subtituloPaginaResultado }}</h3>
+            </br>
+            <!-- Segunda fila: Filtros -->
+            <div class="filter-section">
+                <!-- FILTROS -->
+                <label>Nombre <input type="text" v-model="filtroNombre" id="filtro-nombre-videojuego"
+                        placeholder="Nombre del juego"></label>
 
-        <!-- MOSTRAR SI HUBO ERRORES-->
-        <ul>
-            <li v-for="(error, index) in validacionVideojuegos" :key="index">{{ error }}</li>
-        </ul>
+                <label>Plataforma
+                    <select v-model="filtroPlataforma" id="filtro-plataforma-videojuego" name="plataforma-equipo">
+                        <option value="">Plataforma</option>
+                        <option value="Pc">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox one">Xbox one</option>
+                    </select>
+                </label>
 
-        <h3>{{ subtituloPaginaResultado }}</h3>
+                <label>Estado
+                    <select v-model="filtroEstado" id="filtro-estado-videojuego" name="estado-juego">
+                        <option value="">Estado</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Jugando">Jugando</option>
+                        <option value="Completado">Completado</option>
+                    </select>
+                </label>
+                <!---->
+            </div>
 
-        <!-- FILTROS -->
-        <label>Nombre <input type="text" v-model="filtroNombre" id="filtro-nombre-videojuego" placeholder="Nombre del juego"></label>
-
-        <label>Plataforma 
-            <select v-model="filtroPlataforma" id="filtro-plataforma-videojuego" name="plataforma-equipo">
-                <option value="">Plataforma</option>
-                <option value="Pc">PC</option>
-                <option value="PlayStation">PlayStation</option>
-                <option value="Xbox one">Xbox one</option>
-            </select>
-        </label>
-
-        <label>Estado 
-            <select v-model="filtroEstado" id="filtro-estado-videojuego" name="estado-juego">
-                <option value="">Estado</option>
-                <option value="Pendiente">Pendiente</option>
-                <option value="Jugando">Jugando</option>
-                <option value="Completado">Completado</option>
-            </select>
-        </label>
-        <!---->
-
-        </br> </br>
-
-        <resultados-videojuegos :juegos="juegos" :juegos-filtrados="juegosFiltrados" @mostrar-informacion="actualizarInformacion"></resultados-videojuegos>
-
-        <div v-if="informacion">{{ informacion }}</div>
+            <!-- Tercera fila: Resultados y más información -->
+            <div class="results-section">
+                <resultados-videojuegos :juegos-filtrados="juegosFiltrados"
+                    @mostrar-informacion="actualizarInformacion"></resultados-videojuegos>
+            </div>
+            <div class="info-section">
+                <h3>Más Información</h3>
+                <div v-if="informacion" id="informacion-adicional" v-html="informacion">{{
+                    informacion }}</div>
+            </div>
+        </div>
     </div>
-    
     <script src="scripts.js"></script>
     <script src="./Componentes/resultadosVideojuegos.js"></script>
     <script>appVideojuego.mount('#appVideojuego');</script>
-   
+
 
 </body>
+
 </html>

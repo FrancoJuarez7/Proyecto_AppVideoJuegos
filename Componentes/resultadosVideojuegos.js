@@ -1,5 +1,5 @@
-appVideojuego.component('resultados-videojuegos', {
-    template: 
+appVideojuego.component("resultados-videojuegos", {
+  template:
     /*HTML*/
     `
         <table id="tabla" border="1">
@@ -22,25 +22,18 @@ appVideojuego.component('resultados-videojuegos', {
                 </tr>
             </tbody>
         </table>
-    `, 
-    props: {
-        juegos: {
-            type: Array,
-            required: true
-        },
-        juegosFiltrados: {
-            type: Array,
-            required: true
-        }
+    `,
+  props: {
+    juegosFiltrados: {
+      type: Array,
+      required: true,
     },
-    methods: {
-        mostrarMasInformacion(juego) {
-            let juegoMasInformacion = `Nombre: ${juego.nombre}\n
-                Plataforma: ${juego.plataforma}\n
-                Estado: ${juego.estado}\n
-                Puntaje: ${juego.puntaje}`;
-            
-            this.$emit('mostrar-informacion', juegoMasInformacion);
-        }
-    }
+  },
+  methods: {
+    mostrarMasInformacion(juego) {
+      let juegoMasInformacion = `<p>Nombre: ${juego.nombre}</p><p>Plataforma: ${juego.plataforma}</p><p>Estado: ${juego.estado}</p><p>Puntaje: ${juego.puntaje}</p>`;
+
+      this.$emit("mostrar-informacion", juegoMasInformacion);
+    },
+  },
 });
