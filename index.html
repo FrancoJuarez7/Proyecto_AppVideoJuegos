@@ -53,10 +53,13 @@
                 <button type="submit" id="boton-registrar" @click="registrarVideojuego">Registrar videojuego</button>
 
                 <!-- MOSTRAR SI HUBO ERRORES-->
+            </div>
+            <div class="form-section-errors">
                 <ul>
                     <li v-for="(error, index) in validacionVideojuegos" :key="index">{{ error }}</li>
                 </ul>
             </div>
+
             <h3>{{ subtituloPaginaResultado }}</h3>
             </br>
             <!-- Segunda fila: Filtros -->
