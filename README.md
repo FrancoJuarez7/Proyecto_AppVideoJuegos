@@ -20,6 +20,7 @@ Este proyecto está desplegado y disponible para acceder en GitHub Pages.
 
 # Estructura del Repositorio
 - **index.html:** Este archivo contiene el código HTML que define la estructura de la página web, incluyendo el encabezado, el contenido principal y el pie de página.
+- **styles.css:** Este archivo incluye el código CSS responsable de los estilos visuales y la apariencia de la página web, especificando el diseño, los colores y la organización de los elementos.
 - **scripts.js:** Este archivo contiene el código JavaScript que inicializa y configura la aplicación Vue.js.
 - **Componentes/resultadosVideojuegos.js:** Este archivo contiene el componente Vue.js para mostrar los resultados en la tabla.
 
